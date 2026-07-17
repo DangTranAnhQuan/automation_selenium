@@ -23,7 +23,7 @@ public class TestCase12 {
         try{
             // Step 1 and 2
             driver.get("https://automationexercise.com/");
-            System.out.println("Mở trang web thành công");
+            System.out.println("Mở trang web thành công ");
 
             // Step 3
             boolean isHomePageVisible = driver.findElement(By.id("slider-carousel")).isDisplayed();

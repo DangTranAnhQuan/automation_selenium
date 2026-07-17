@@ -29,8 +29,8 @@ public class TestCase10 {
             // Step 5
             boolean isSubscriptionHeaderVisible = driver.findElement(By.xpath("//h2[contains(text(),'Subscription')]")).isDisplayed();
             if (isSubscriptionHeaderVisible)
-                System.out.println("Phần 'SUBSCRIPTION' hiển thị thành công");
-            else System.out.println("Phần 'SUBSCRIPTION' không hiển thị");
+                System.out.println("Phần SUBSCRIPTION hiển thị thành công");
+            else System.out.println("Phần SUBSCRIPTION không hiển thị");
 
             // Step 6
             WebElement inputEmail = driver.findElement(By.id("susbscribe_email"));
@@ -42,8 +42,8 @@ public class TestCase10 {
             // Step 7
             boolean isSuccessMessageVisible = driver.findElement(By.xpath("//*[contains(text(),'You have been successfully subscribed!')]")).isDisplayed();
             if (isSuccessMessageVisible)
-                System.out.println("Thông báo 'You have been successfully subscribed!' hiển thị thành công");
-            else System.out.println("Thông báo 'You have been successfully subscribed!' không hiển thị");
+                System.out.println("Thông báo You have been successfully subscribed! hiển thị thành công");
+            else System.out.println("Thông báo You have been successfully subscribed! không hiển thị");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

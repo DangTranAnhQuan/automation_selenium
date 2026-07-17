@@ -34,8 +34,8 @@ public class TestCase9 {
             // Step 5
             boolean isProductPageVisible = driver.findElement(By.xpath("//h2[contains(text(),'All Products')]")).isDisplayed();
             if (isProductPageVisible)
-                System.out.println("Trang 'All Products' hiển thị thành công");
-            else System.out.println("Trang 'All Products' không hiển thị");
+                System.out.println("Trang All Products hiển thị thành công");
+            else System.out.println("Trang All Products không hiển thị");
 
             // Step 6
             WebElement searchInput = driver.findElement(By.id("search_product"));
@@ -47,8 +47,8 @@ public class TestCase9 {
             // Step 7
             boolean isSearchPageVisible = driver.findElement(By.xpath("//h2[contains(text(),'Searched Products')]")).isDisplayed();
             if (isSearchPageVisible)
-                System.out.println("Trang 'Searched Products' hiển thị thành công");
-            else System.out.println("Trang 'Searched Products' không hiển thị");
+                System.out.println("Trang Searched Products hiển thị thành công");
+            else System.out.println("Trang Searched Products không hiển thị");
 
             // Step 8
             List<WebElement> productsName = driver.findElements(By.xpath("//div[@class='productinfo text-center']/p"));

@@ -1,4 +1,15 @@
-# SeleniumTest
+<div align="center">
+  <img src="https://automationexercise.com/static/images/home/logo.png" alt="Automation Exercise Logo" width="263" />
+  <h1>SeleniumTest</h1>
+  <p>
+    <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
+    <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven" />
+    <img src="https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white" alt="Selenium" />
+    <img src="https://img.shields.io/badge/TestNG-FF6F00?style=for-the-badge&logo=testinglibrary&logoColor=white" alt="TestNG" />
+    <img src="https://img.shields.io/badge/JUnit-25A162?style=for-the-badge&logo=junit5&logoColor=white" alt="JUnit" />
+    <img src="https://img.shields.io/badge/Chrome-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Google Chrome" />
+  </p>
+</div>
 
 Đây là project kiểm thử tự động bằng Selenium cho trang [Automation Exercise](https://automationexercise.com/). Project bao gồm các kịch bản kiểm thử (test cases) được viết bằng Java, bao phủ các luồng chức năng chính của website.
 
@@ -42,9 +53,11 @@ File `pom.xml` đã được cấu hình với các dependency cần thiết cho
 ### Chạy bằng Maven
 
 Mở terminal hoặc command prompt ở thư mục gốc của dự án và chạy lệnh:
+
 ```sh
 mvn test
 ```
+
 Maven sẽ tự động tìm và thực thi tất cả các test case trong thư mục `src/test/java`.
 
 ### Chạy từ IDE (IntelliJ, Eclipse, ...)

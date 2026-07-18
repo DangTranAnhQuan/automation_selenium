@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -22,9 +23,8 @@ public class TestCase6 {
 
             // Step 3
             boolean isHomePageVisible = driver.findElement(By.id("slider-carousel")).isDisplayed();
-            if (isHomePageVisible)
-                System.out.println("Trang chủ hiển thị thành công");
-            else System.out.println("Trang chủ không hiển thị");
+            Assert.assertTrue(isHomePageVisible, "Trang chủ không hiển thị.");
+            System.out.println("Trang chủ hiển thị thành công");
 
             // Step 4
             WebElement contactUsBtn = driver.findElement(By.xpath("//a[@href='/contact_us']"));
@@ -33,9 +33,8 @@ public class TestCase6 {
 
             // Step 5
             boolean iscontactUsHeaderVisible = driver.findElement(By.xpath("//h2[contains(text(),'Get In Touch')]")).isDisplayed();
-            if (iscontactUsHeaderVisible)
-                System.out.println("Form 'Get In Touch' hiển thị thành công");
-            else System.out.println("Form 'Get In Touch' không hiển thị");
+            Assert.assertTrue(iscontactUsHeaderVisible, "Form 'Get In Touch' không hiển thị.");
+            System.out.println("Form 'Get In Touch' hiển thị thành công");
 
             // Step 6
             WebElement inputName = driver.findElement(By.xpath("//input[@data-qa='name']"));
@@ -63,19 +62,16 @@ public class TestCase6 {
 
             // Step 10
             boolean isSuccessMessageVisible = driver.findElement(By.xpath("//div[contains(text(),'Success! Your details have been submitted successfully.')]")).isDisplayed();
-            if (isSuccessMessageVisible)
-                System.out.println("Thông báo 'Success! Your details have been submitted successfully.' hiển thị thành công");
-            else System.out.println("Thông báo 'Success! Your details have been submitted successfully.' không hiển thị");
+            Assert.assertTrue(isSuccessMessageVisible, "Thông báo 'Success! Your details have been submitted successfully.' không hiển thị.");
+            System.out.println("Thông báo 'Success! Your details have been submitted successfully.' hiển thị thành công");
 
             // Step 11
             WebElement homeBtn = driver.findElement(By.xpath("//a[@class='btn btn-success']"));
             homeBtn.click();
             System.out.println("Đã nhấn nút Home");
             WebElement isHomePageVisibleAfterClick = driver.findElement(By.id("slider-carousel"));
-            if (isHomePageVisibleAfterClick.isDisplayed())
-                System.out.println("Trang chủ hiển thị thành công sau khi nhấn nút Home");
-            else System.out.println("Trang chủ không hiển thị sau khi nhấn nút Home");
-
+            Assert.assertTrue(isHomePageVisibleAfterClick.isDisplayed(), "Trang chủ không hiển thị sau khi nhấn nút Home.");
+            System.out.println("Trang chủ hiển thị thành công sau khi nhấn nút Home");
 
         } catch (Exception e) {
             e.printStackTrace();

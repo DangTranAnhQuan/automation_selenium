@@ -4,14 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
-
-import static java.lang.Thread.sleep;
 
 public class TestCase12 {
     public static void main() {
@@ -27,9 +25,8 @@ public class TestCase12 {
 
             // Step 3
             boolean isHomePageVisible = driver.findElement(By.id("slider-carousel")).isDisplayed();
-            if (isHomePageVisible)
-                System.out.println("Trang chủ hiển thị thành công");
-            else System.out.println("Trang chủ không hiển thị");
+            Assert.assertTrue(isHomePageVisible, "Trang chủ không hiển thị.");
+            System.out.println("Trang chủ hiển thị thành công");
 
             // Step 4
             WebElement productBtn = driver.findElement(By.xpath("//a[@href='/products']"));
@@ -62,11 +59,9 @@ public class TestCase12 {
             System.out.println("Đã nhấn nút View Cart");
 
             // Step 9
-            Integer cartItemsCount = driver.findElements(By.xpath("//tr[@id='product-1' or @id='product-2']")).size();
-            if (cartItemsCount == 2)
-                System.out.println("Hai sản phẩm đã được thêm vào giỏ hàng thành công");
-            else System.out.println("Số lượng sản phẩm trong giỏ hàng không đúng");
-
+            List<WebElement> cartRows = driver.findElements(By.xpath("//table[@id='cart_info_table']/tbody/tr"));
+            Assert.assertEquals(cartRows.size(), 2, "Số lượng sản phẩm trong giỏ hàng không đúng.");
+            System.out.println("Hai sản phẩm đã được thêm vào giỏ hàng thành công");
             // Step 10
             List<WebElement> cartItems = driver.findElements(By.xpath("//table[@id='cart_info_table']/tbody/tr"));
             for (int i = 0; i < cartItems.size(); i++) {

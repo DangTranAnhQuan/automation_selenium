@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
@@ -22,9 +23,8 @@ public class TestCase9 {
 
             // Step 3
             boolean isHomepageVisible = driver.findElement(By.id("slider-carousel")).isDisplayed();
-            if (isHomepageVisible)
-                System.out.println("Trang chủ hiển thị thành công");
-            else System.out.println("Trang chủ không hiển thị");
+            Assert.assertTrue(isHomepageVisible, "Trang chủ không hiển thị.");
+            System.out.println("Trang chủ hiển thị thành công");
 
             // Step 4
             WebElement productBtn = driver.findElement(By.xpath("//a[@href='/products']"));
@@ -33,9 +33,8 @@ public class TestCase9 {
 
             // Step 5
             boolean isProductPageVisible = driver.findElement(By.xpath("//h2[contains(text(),'All Products')]")).isDisplayed();
-            if (isProductPageVisible)
-                System.out.println("Trang All Products hiển thị thành công");
-            else System.out.println("Trang All Products không hiển thị");
+            Assert.assertTrue(isProductPageVisible, "Trang 'All Products' không hiển thị.");
+            System.out.println("Trang All Products hiển thị thành công");
 
             // Step 6
             WebElement searchInput = driver.findElement(By.id("search_product"));
@@ -46,9 +45,8 @@ public class TestCase9 {
 
             // Step 7
             boolean isSearchPageVisible = driver.findElement(By.xpath("//h2[contains(text(),'Searched Products')]")).isDisplayed();
-            if (isSearchPageVisible)
-                System.out.println("Trang Searched Products hiển thị thành công");
-            else System.out.println("Trang Searched Products không hiển thị");
+            Assert.assertTrue(isSearchPageVisible, "Header 'Searched Products' không hiển thị.");
+            System.out.println("Trang Searched Products hiển thị thành công");
 
             // Step 8
             List<WebElement> productsName = driver.findElements(By.xpath("//div[@class='productinfo text-center']/p"));
@@ -66,10 +64,8 @@ public class TestCase9 {
                 }
             }
 
-            if (check)
-                System.out.println("Tất cả sản phẩm đều chứa từ khóa tìm kiếm: " + key);
-            else
-                System.out.println("Có sản phẩm không chứa từ khóa tìm kiếm: " + key);
+            Assert.assertTrue(check, "Có sản phẩm không chứa từ khóa tìm kiếm: " + key);
+            System.out.println("Tất cả sản phẩm đều chứa từ khóa tìm kiếm: " + key);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

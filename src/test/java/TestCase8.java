@@ -1,15 +1,17 @@
+import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 
 import java.time.Duration;
 
-import static java.lang.Thread.sleep;
-
 public class TestCase8 {
-    public static void main() {
+    @Test
+    public void main() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.addArguments("--incognito");
@@ -24,9 +26,8 @@ public class TestCase8 {
 
             // Step 3
             boolean isHomePageVisible = driver.findElement(By.id("slider-carousel")).isDisplayed();
-            if (isHomePageVisible)
-                System.out.println("Trang chủ hiển thị thành công");
-            else System.out.println("Trang chủ không hiển thị");
+            Assert.assertTrue(isHomePageVisible, "Home page is not visible.");
+            System.out.println("Trang chủ hiển thị thành công");
 
             // Step 4
             WebElement productBtn = driver.findElement(By.xpath("//a[@href='/products']"));
@@ -35,32 +36,29 @@ public class TestCase8 {
 
             // Step 5
             boolean isAllProductsHeaderVisible = driver.findElement(By.xpath("//h2[contains(text(),'All Products')]")).isDisplayed();
-            if (isAllProductsHeaderVisible)
-                System.out.println("Trang 'All Products' hiển thị thành công");
-            else System.out.println("Trang 'All Products' không hiển thị");
+            Assert.assertTrue(isAllProductsHeaderVisible, "'All Products' page is not visible.");
+            System.out.println("Trang 'All Products' hiển thị thành công");
 
             // Step 6
             WebElement productsList = driver.findElement(By.xpath("//div[@class='product-image-wrapper']"));
-            if (productsList.isDisplayed())
-                System.out.println("Danh sách sản phẩm hiển thị thành công");
-            else System.out.println("Danh sách sản phẩm không hiển thị");
+            Assert.assertTrue(productsList.isDisplayed(), "Product list is not visible.");
+            System.out.println("Danh sách sản phẩm hiển thị thành công");
 
             // Step 7
+            JavascriptExecutor js = (JavascriptExecutor) driver;
             WebElement viewProductBtn = driver.findElement(By.xpath("//a[@href='/product_details/1']"));
-            viewProductBtn.click();
+            js.executeScript("arguments[0].click();", viewProductBtn);
             System.out.println("Đã nhấn nút View Product");
 
             // Step 8
             boolean isProductDetailsHeaderVisible = driver.findElement(By.xpath("//h2[contains(text(),'Blue Top')]")).isDisplayed();
-            if (isProductDetailsHeaderVisible)
-                System.out.println("Trang 'Product Details' hiển thị thành công");
-            else System.out.println("Trang 'Product Details' không hiển thị");
+            Assert.assertTrue(isProductDetailsHeaderVisible, "Product detail page header is not visible.");
+            System.out.println("Trang 'Product Details' hiển thị thành công");
 
             // Step 9
             WebElement productDetails = driver.findElement(By.xpath("//div[@class='product-information']"));
-            if (productDetails.isDisplayed())
-                System.out.println("Chi tiết sản phẩm hiển thị thành công");
-            else System.out.println("Chi tiết sản phẩm không hiển thị");
+            Assert.assertTrue(productDetails.isDisplayed(), "Product information section is not visible.");
+            System.out.println("Chi tiết sản phẩm hiển thị thành công");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

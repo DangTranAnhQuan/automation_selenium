@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -22,9 +23,8 @@ public class TestCase3 {
 
             // Step 3
             boolean isHomePageVisible = driver.findElement(By.id("slider-carousel")).isDisplayed();
-            if (isHomePageVisible)
-                System.out.println("Trang chủ hiển thị thành công");
-            else System.out.println("Trang chủ không hiển thị");
+            Assert.assertTrue(isHomePageVisible, "Trang chủ không hiển thị.");
+            System.out.println("Trang chủ hiển thị thành công");
 
             // Step 4
             WebElement signUpLoginBtn = driver.findElement(By.xpath("//a[@href='/login']"));
@@ -33,9 +33,8 @@ public class TestCase3 {
 
             // Step 5
             boolean isLoginHeaderVisible = driver.findElement(By.xpath("//h2[contains(text(), 'Login to your account')]")).isDisplayed();
-            if (isLoginHeaderVisible)
-                System.out.println("Form Login hiển thị thành công");
-            else System.out.println("Form Login không hiển thị");
+            Assert.assertTrue(isLoginHeaderVisible, "Form 'Login to your account' không hiển thị.");
+            System.out.println("Form Login hiển thị thành công");
 
             // Step 6
             WebElement inputEmail = driver.findElement(By.xpath("//input[@data-qa='login-email']"));
@@ -50,9 +49,8 @@ public class TestCase3 {
 
             // Step 8
             boolean errorLoginHeaderVisible = driver.findElement(By.xpath("//p[contains(text(),'Your email or password is incorrect!')]")).isDisplayed();
-            if (errorLoginHeaderVisible)
-                System.out.println("Thông báo lỗi hiển thị thành công");
-            else System.out.println("Thông báo lỗi không hiển thị");
+            Assert.assertTrue(errorLoginHeaderVisible, "Thông báo lỗi không hiển thị.");
+            System.out.println("Thông báo lỗi hiển thị thành công");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

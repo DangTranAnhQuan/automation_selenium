@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -22,9 +23,8 @@ public class TestCase4 {
 
             // Step 3
             boolean isHomePageVisible = driver.findElement(By.id("slider-carousel")).isDisplayed();
-            if (isHomePageVisible)
-                System.out.println("Trang chủ hiển thị thành công");
-            else System.out.println("Trang chủ không hiển thị");
+            Assert.assertTrue(isHomePageVisible, "Trang chủ không hiển thị.");
+            System.out.println("Trang chủ hiển thị thành công");
 
             // Step 4
             WebElement signUpBtn = driver.findElement(By.xpath("//a[@href='/login']"));
@@ -33,9 +33,8 @@ public class TestCase4 {
 
             // Step 5
             boolean isLoginHeaderVisible = driver.findElement(By.xpath("//h2[contains(text(), 'Login to your account')]")).isDisplayed();
-            if (isLoginHeaderVisible)
-                System.out.println("Form Login hiển thị thành công");
-            else System.out.println("Form Login không hiển thị");
+            Assert.assertTrue(isLoginHeaderVisible, "Form 'Login to your account' không hiển thị.");
+            System.out.println("Form Login hiển thị thành công");
 
             //Step 6
             WebElement inputEmail = driver.findElement(By.xpath("//input[@data-qa='login-email']"));
@@ -50,9 +49,8 @@ public class TestCase4 {
 
             // Step 8
             boolean loggedInAsUserNameVisible = driver.findElement(By.xpath("//a[contains(text(),'Logged in as')]")).isDisplayed();
-            if (loggedInAsUserNameVisible)
-                System.out.println("Trang 'Logged in as' hiển thị thành công");
-            else System.out.println("Trang 'Logged in as' không hiển thị");
+            Assert.assertTrue(loggedInAsUserNameVisible, "Header 'Logged in as' không hiển thị.");
+            System.out.println("Trang 'Logged in as' hiển thị thành công");
 
             //Step 9
             WebElement logoutBtn = driver.findElement(By.xpath("//a[@href='/logout']"));
@@ -61,9 +59,8 @@ public class TestCase4 {
 
             //Step 10
             boolean isLoginPageAfterLogout = driver.findElement(By.xpath("//h2[contains(text(),'Login to your account')]")).isDisplayed();
-            if (isLoginPageAfterLogout)
-                System.out.println("Trang 'Login to your account' hiển thị thành công sau khi logout");
-            else System.out.println("Trang 'Login to your account' không hiển thị sau khi logout");
+            Assert.assertTrue(isLoginPageAfterLogout, "Không quay về trang Login sau khi logout.");
+            System.out.println("Trang 'Login to your account' hiển thị thành công sau khi logout");
 
         } catch (Exception e) {
             e.printStackTrace();

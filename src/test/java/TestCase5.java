@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -21,9 +22,8 @@ public class TestCase5 {
 
             //Step 3
             boolean isHomePageVisible = driver.findElement(By.id("slider-carousel")).isDisplayed();
-            if (isHomePageVisible)
-                System.out.println("Trang chủ hiển thị thành công");
-            else System.out.println("Trang chủ không hiển thị");
+            Assert.assertTrue(isHomePageVisible, "Trang chủ không hiển thị.");
+            System.out.println("Trang chủ hiển thị thành công");
 
             //Step 4
             WebElement signUpLoginBtn = driver.findElement(By.xpath("//a[@href='/login']"));
@@ -32,9 +32,8 @@ public class TestCase5 {
 
             //Step 5
             boolean isHeaderNewUserVisible = driver.findElement(By.xpath("//h2[contains(text(),'New User Signup!')]")).isDisplayed();
-            if (isHeaderNewUserVisible)
-                System.out.println("Form 'New User Signup!' hiển thị thành công");
-            else System.out.println("Form 'New User Signup!' không hiển thị");
+            Assert.assertTrue(isHeaderNewUserVisible, "Form 'New User Signup!' không hiển thị.");
+            System.out.println("Form 'New User Signup!' hiển thị thành công");
 
             //Step 6
             WebElement inputName = driver.findElement(By.xpath("//input[@data-qa='signup-name']"));
@@ -49,10 +48,8 @@ public class TestCase5 {
 
             //Step 8
             WebElement emailExistNotification = driver.findElement(By.xpath("//p[contains(text(),'Email Address already exist!')]"));
-            if (emailExistNotification.isDisplayed())
-                System.out.println("Thông báo 'Email Address already exist!' hiển thị thành công");
-            else System.out.println("Thông báo 'Email Address already exist!' không hiển thị");
-
+            Assert.assertTrue(emailExistNotification.isDisplayed(), "Thông báo 'Email Address already exist!' không hiển thị.");
+            System.out.println("Thông báo 'Email Address already exist!' hiển thị thành công");
         } catch (Exception e) {
             e.printStackTrace();
         } finally{

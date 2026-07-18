@@ -1,17 +1,18 @@
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Sleeper;
+import org.testng.Assert;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class TestCase1 {
-    public static void main() {
+    @Test
+    public void main() {
         ChromeOptions  options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.addArguments("--incognito");
@@ -32,11 +33,8 @@ public class TestCase1 {
 
             // step 3
             boolean isHomePageVisible = driver.findElement(By.id("slider-carousel")).isDisplayed();
-            if (isHomePageVisible) {
+            Assert.assertTrue(isHomePageVisible, "Trang chủ không hiển thị.");
                 System.out.println("Trang chủ hiển thị thành công.");
-            } else {
-                System.out.println("Trang chủ không hiển thị.");
-            }
 
             // step 4
             WebElement SignUpOrLoginBtn = driver.findElement(By.xpath("//a[contains(text(),'Signup / Login')]"));
@@ -45,10 +43,8 @@ public class TestCase1 {
 
             // step 5
             WebElement signupHeader = driver.findElement(By.xpath("//h2[contains(text(),'New User Signup!')]"));
-            if (signupHeader.isDisplayed())
-                System.out.println("Trang 'New User Signup!' hiển thị thành công.");
-            else
-                System.out.println("Trang 'New User Signup!' không hiển thị.");
+            Assert.assertTrue(signupHeader.isDisplayed(), "Trang New User Signup! không hiển thị.");
+            System.out.println("Trang 'New User Signup!' hiển thị thành công.");
 
             // step 6
             WebElement inputName = driver.findElement(By.xpath("//input[@data-qa='signup-name']"));
@@ -63,10 +59,9 @@ public class TestCase1 {
 
             // step 8
             WebElement enterAccountInformationHeader = driver.findElement(By.xpath("//b[contains(text(),'Enter Account Information')]"));
-            if (enterAccountInformationHeader.isDisplayed())
-                System.out.println("Trang 'Enter Account Information' hiển thị thành công.");
-            else
-                System.out.println("Trang 'Enter Account Information' không hiển thị.");
+            Assert.assertTrue(enterAccountInformationHeader.isDisplayed(), "Trang Enter Account Information không hiển thị.");
+            System.out.println("Trang 'Enter Account Information' hiển thị thành công.");
+
 
             // step 9
             WebElement titleMrRadioGender = driver.findElement(By.id("id_gender1"));
@@ -118,10 +113,8 @@ public class TestCase1 {
 
             //step 14
             WebElement accountCreatedHeader = driver.findElement(By.xpath("//b[contains(text(),'Account Created!')]"));
-            if (accountCreatedHeader.isDisplayed())
-                System.out.println("Trang 'Account Created!' hiển thị thành công.");
-            else
-                System.out.println("Trang 'Account Created!' không hiển thị.");
+            Assert.assertTrue(accountCreatedHeader.isDisplayed(), "Trang Account Created! không hiển thị.");
+            System.out.println("Trang 'Account Created!' hiển thị thành công.");
 
             //step 15
             WebElement continueBtn = driver.findElement(By.xpath("//a[@data-qa='continue-button']"));

@@ -49,7 +49,13 @@ Tất cả các file test case được đặt trong thư mục `src/test/java`.
 - `TestCase17.java`: Xóa sản phẩm khỏi giỏ hàng và xác thực giỏ hàng trống.
 - `TestCase18.java`: Xem sản phẩm theo danh mục (Category).
 - `TestCase19.java`: Xem sản phẩm theo thương hiệu (Brand).
-- `TestCase20.java`: Tìm kiếm sản phẩm và xác thực giỏ hàng sau khi đăng nhập.
+- `TestCase20.java`: Tìm kiếm sản phẩm, đăng nhập và xác thực giỏ hàng sau khi đăng nhập.
+- `TestCase21.java`: Thêm đánh giá (review) cho một sản phẩm.
+- `TestCase22.java`: Thêm sản phẩm vào giỏ hàng từ mục "Recommended items".
+- `TestCase23.java`: Xác thực thông tin địa chỉ giao hàng và địa chỉ thanh toán trùng khớp.
+- `TestCase24.java`: Tải hóa đơn (invoice) sau khi đặt hàng thành công.
+- `TestCase25.java`: Kiểm tra chức năng cuộn lên bằng nút mũi tên.
+- `TestCase26.java`: Kiểm tra chức năng cuộn lên không cần nút mũi tên.
 
 ## Cấu hình Maven
 

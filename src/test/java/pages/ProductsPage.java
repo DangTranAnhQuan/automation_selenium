@@ -5,7 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ProductsPage {
@@ -17,6 +20,10 @@ public class ProductsPage {
     private By searchBtn = By.id("submit_search");
     private  By searchProductsHeader = By.xpath("//h2[contains(text(),'Searched Products')]");
     private By productNameList = By.xpath("//div[@class='productinfo text-center']/p");
+    private By firstProductAddToCartBtn = By.xpath("(//a[@data-product-id='1'])[1]");
+    private By secondProductAddToCartBtn = By.xpath("(//a[@data-product-id='2'])[1]");
+    private By continueShoppingBtn = By.xpath("//button[text()='Continue Shopping']");
+    private By viewCartModalBtn = By.xpath("//div[@class='modal-content']//a[@href='/view_cart']");
 
     public ProductsPage(WebDriver driver) {
         this.driver = driver;
@@ -65,5 +72,31 @@ public class ProductsPage {
             }
         }
         return true;
+    }
+
+    @Step("Hover và click 'Add to cart' cho sản phẩm đầu tiên")
+    public void addFirstProductToCart() {
+        WebElement addBtn1 = driver.findElement(firstProductAddToCartBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addBtn1);
+    }
+
+    @Step("Hover và click 'Add to cart' cho sản phẩm thứ hai")
+    public void addSecondProductToCart() {
+        WebElement addBtn2 = driver.findElement(secondProductAddToCartBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addBtn2);
+    }
+
+    @Step("Click nút 'Continue Shopping' trên popup modal")
+    public void clickContinueShopping() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement continueBtn = wait.until(ExpectedConditions.elementToBeClickable(continueShoppingBtn));
+        continueBtn.click();
+    }
+
+    @Step("Click nút 'View Cart' trên popup modal")
+    public void clickViewCartOnModal() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement viewCartBtn = wait.until(ExpectedConditions.elementToBeClickable(viewCartModalBtn));
+        viewCartBtn.click();
     }
 }

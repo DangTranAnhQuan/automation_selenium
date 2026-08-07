@@ -26,6 +26,8 @@ public class HomePage {
     private By subscribeEmailInput = By.id("susbscribe_email");
     private By subscribeBtn = By.id("subscribe");
     private By subscribeSuccessMessage = By.xpath("//*[contains(text(),'You have been successfully subscribed!')]");
+    private By cartBtn = By.xpath("//a[@href='/view_cart']");
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -81,6 +83,11 @@ public class HomePage {
     @Step("Kiểm tra thông báo đăng ký thành công hiển thị")
     public boolean isSubscriptionSuccessMessageVisible() {
         return driver.findElement(subscribeSuccessMessage).isDisplayed();
+    }
+
+    @Step("Nhấp vào nút 'Cart' trên thanh điều hướng")
+    public void clickCart() {
+        driver.findElement(cartBtn).click();
     }
 
     @Step("Nhấp vào nút 'Logout'")

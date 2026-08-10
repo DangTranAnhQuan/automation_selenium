@@ -27,6 +27,9 @@ public class HomePage {
     private By subscribeBtn = By.id("subscribe");
     private By subscribeSuccessMessage = By.xpath("//*[contains(text(),'You have been successfully subscribed!')]");
     private By cartBtn = By.xpath("//a[@href='/view_cart']");
+    private By viewProductBtn = By.xpath("//a[@href='/product_details/1']");
+    private By firstProductAddToCartBtn = By.xpath("//a[@data-product-id='1']");
+    private By viewCartModalBtn = By.xpath("//div[@class='modal-content']//a[@href='/view_cart']");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -88,6 +91,24 @@ public class HomePage {
     @Step("Nhấp vào nút 'Cart' trên thanh điều hướng")
     public void clickCart() {
         driver.findElement(cartBtn).click();
+    }
+
+    @Step("Nhấp vào nút 'View Product' của sản phẩm bâm đầu tiên trên trang chủ")
+    public void clickViewProduct() {
+        driver.findElement(viewProductBtn).click();
+    }
+
+    @Step("Thêm sản phẩm đầu tiên vào giỏ hàng từ trang chủ")
+    public void addFirstProductToCart() {
+        WebElement addBtn = driver.findElement(firstProductAddToCartBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addBtn);
+    }
+
+    @Step("Click nút 'View Cart' trên popup modal")
+    public void clickViewCartOnModal() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement viewCartBtn = wait.until(ExpectedConditions.elementToBeClickable(viewCartModalBtn));
+        viewCartBtn.click();
     }
 
     @Step("Nhấp vào nút 'Logout'")

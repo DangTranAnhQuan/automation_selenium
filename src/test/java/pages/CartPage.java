@@ -10,6 +10,10 @@ public class CartPage {
     private WebDriver driver;
     private By cartInfoTable = By.id("cart_info_table");
     private By cartProductRows = By.xpath("//table[@id='cart_info_table']/tbody/tr");
+    private By cartQuantityBtn = By.xpath("//td[@class='cart_quantity']/button");
+    private By cartInfo = By.id("cart_info");
+    private By proceedToCheckoutBtn = By.xpath("//a[@class='btn btn-default check_out']");
+    private By registerLoginModalBtn = By.xpath("//div[@class='modal-content']//a[@href='/login']");
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
@@ -34,5 +38,25 @@ public class CartPage {
         boolean isTotalValid = total.isDisplayed() && !total.getText().isEmpty();
 
         return isPriceValid && isQuantityValid && isTotalValid;
+    }
+
+    @Step("Lấy số lượng hiển thị của sản phẩm trong giỏ hàng")
+    public String getProductQuantity() {
+        return driver.findElement(cartQuantityBtn).getText();
+    }
+
+    @Step("Kiểm tra trang Giỏ hàng hiển thị")
+    public boolean isCartPageVisible() {
+        return driver.findElement(cartInfo).isDisplayed();
+    }
+
+    @Step("Nhấn nút 'Proceed To Checkout'")
+    public void clickProceedToCheckout() {
+        driver.findElement(proceedToCheckoutBtn).click();
+    }
+
+    @Step("Nhấn nút 'Register / Login' trên Modal")
+    public void clickRegisterLoginOnModal() {
+        driver.findElement(registerLoginModalBtn).click();
     }
 }

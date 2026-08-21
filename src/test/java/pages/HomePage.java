@@ -30,6 +30,11 @@ public class HomePage {
     private By viewProductBtn = By.xpath("//a[@href='/product_details/1']");
     private By firstProductAddToCartBtn = By.xpath("//a[@data-product-id='1']");
     private By viewCartModalBtn = By.xpath("//div[@class='modal-content']//a[@href='/view_cart']");
+    private By categorySidebar = By.id("accordian");
+    private By womenCategory = By.xpath("//a[@href='#Women']");
+    private By dressSubCategory = By.xpath("//a[@href='/category_products/1']");
+    private By menCategory = By.xpath("//a[@href='#Men']");
+    private By tshirtsSubCategory = By.xpath("//a[@href='/category_products/3']");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -119,5 +124,34 @@ public class HomePage {
     @Step("Nhấp vào nút 'Delete Account'")
     public void clickDeleteAccount() {
         driver.findElement(deleteAccountBtn).click();
+    }
+
+    @Step("Kiểm tra danh mục sản phẩm (Left Sidebar) hiển thị")
+    public boolean isCategorySidebarVisible() {
+        WebElement sidebar = driver.findElement(categorySidebar);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", sidebar);
+        return sidebar.isDisplayed();
+    }
+
+    @Step("Nhấp vào danh mục 'Women'")
+    public void clickWomenCategory() {
+        driver.findElement(womenCategory).click();
+    }
+
+    @Step("Nhấp vào danh mục con 'Dress' của Women")
+    public void clickDressSubCategory() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(dressSubCategory)).click();
+    }
+
+    @Step("Nhấp vào danh mục 'Men'")
+    public void clickMenCategory() {
+        driver.findElement(menCategory).click();
+    }
+
+    @Step("Nhấp vào danh mục con 'T-shirts' của Men")
+    public void clickTshirtsSubCategory() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(tshirtsSubCategory)).click();
     }
 }

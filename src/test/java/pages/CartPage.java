@@ -2,8 +2,13 @@ package pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.List;
 
 public class CartPage {
@@ -14,6 +19,8 @@ public class CartPage {
     private By cartInfo = By.id("cart_info");
     private By proceedToCheckoutBtn = By.xpath("//a[@class='btn btn-default check_out']");
     private By registerLoginModalBtn = By.xpath("//div[@class='modal-content']//a[@href='/login']");
+    private By deleteProductBtn = By.xpath("//a[@class='cart_quantity_delete']");
+    private By productRow1 = By.xpath("//tr[@id='product-1']");
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
@@ -58,5 +65,18 @@ public class CartPage {
     @Step("Nhấn nút 'Register / Login' trên Modal")
     public void clickRegisterLoginOnModal() {
         driver.findElement(registerLoginModalBtn).click();
+    }
+
+    @Step("Nhấn nút 'X' tương ứng để xóa sản phẩm")
+    public void clickDeleteProduct() {
+        WebElement deleteBtn = driver.findElement(deleteProductBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", deleteBtn);
+    }
+
+    @Step("Kiểm tra sản phẩm đã bị xóa khỏi giỏ hàng")
+    public boolean isProductRemoved() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // Sử dụng invisibility thay vì isDisplayed để tránh lỗi NoSuchElementException khi phần tử không còn tồn tại
+        return wait.until(ExpectedConditions.invisibilityOfElementLocated(productRow1));
     }
 }

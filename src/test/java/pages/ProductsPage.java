@@ -24,6 +24,9 @@ public class ProductsPage {
     private By secondProductAddToCartBtn = By.xpath("(//a[@data-product-id='2'])[1]");
     private By continueShoppingBtn = By.xpath("//button[text()='Continue Shopping']");
     private By viewCartModalBtn = By.xpath("//div[@class='modal-content']//a[@href='/view_cart']");
+    private By brandsSidebar = By.xpath("//div[@class='brands_products']");
+    private By poloBrandLink = By.xpath("//a[@href='/brand_products/Polo']");
+    private By hmBrandLink = By.xpath("//a[@href='/brand_products/H&M']");
 
     public ProductsPage(WebDriver driver) {
         this.driver = driver;
@@ -98,5 +101,26 @@ public class ProductsPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement viewCartBtn = wait.until(ExpectedConditions.elementToBeClickable(viewCartModalBtn));
         viewCartBtn.click();
+    }
+    @Step("Kiểm tra danh sách Thương hiệu (Brands Sidebar) hiển thị")
+    public boolean isBrandsSidebarVisible() {
+        WebElement sidebar = driver.findElement(brandsSidebar);
+        // Sử dụng JS Executor để cuộn tới phần tử theo mã gốc
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", sidebar);
+        return sidebar.isDisplayed();
+    }
+
+    @Step("Nhấp vào thương hiệu 'Polo'")
+    public void clickPoloBrand() {
+        WebElement poloLink = driver.findElement(poloBrandLink);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", poloLink);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", poloLink);
+    }
+
+    @Step("Nhấp vào thương hiệu 'H&M'")
+    public void clickHMBrand() {
+        WebElement hmLink = driver.findElement(hmBrandLink);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", hmLink);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hmLink);
     }
 }

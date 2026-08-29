@@ -27,6 +27,7 @@ public class ProductsPage {
     private By brandsSidebar = By.xpath("//div[@class='brands_products']");
     private By poloBrandLink = By.xpath("//a[@href='/brand_products/Polo']");
     private By hmBrandLink = By.xpath("//a[@href='/brand_products/H&M']");
+    private By allAddToCartBtns = By.xpath("//div[@class='productinfo text-center']//a[contains(@class,'add-to-cart')]");
 
     public ProductsPage(WebDriver driver) {
         this.driver = driver;
@@ -122,5 +123,17 @@ public class ProductsPage {
         WebElement hmLink = driver.findElement(hmBrandLink);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", hmLink);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", hmLink);
+    }
+
+    @Step("Thêm tất cả sản phẩm tìm được vào giỏ hàng")
+    public int addAllSearchedProductsToCart() {
+        List<WebElement> buttons = driver.findElements(allAddToCartBtns);
+        int count = buttons.size();
+        for (WebElement btn : buttons) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(continueShoppingBtn)).click();
+        }
+        return count;
     }
 }

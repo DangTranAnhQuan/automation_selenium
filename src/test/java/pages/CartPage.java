@@ -21,6 +21,7 @@ public class CartPage {
     private By registerLoginModalBtn = By.xpath("//div[@class='modal-content']//a[@href='/login']");
     private By deleteProductBtn = By.xpath("//a[@class='cart_quantity_delete']");
     private By productRow1 = By.xpath("//tr[@id='product-1']");
+    private By cartItemsRows = By.xpath("//tbody/tr");
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
@@ -77,6 +78,11 @@ public class CartPage {
     public boolean isProductRemoved() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         // Sử dụng invisibility thay vì isDisplayed để tránh lỗi NoSuchElementException khi phần tử không còn tồn tại
-        return wait.until(ExpectedConditions.invisibilityOfElementLocated(productRow1));
+            return wait.until(ExpectedConditions.invisibilityOfElementLocated(productRow1));
+    }
+
+    @Step("Lấy tổng số lượng sản phẩm đang hiển thị trong giỏ hàng")
+    public int getCartItemsCount() {
+        return driver.findElements(cartItemsRows).size();
     }
 }
